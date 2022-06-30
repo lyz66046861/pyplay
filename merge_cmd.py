@@ -23,6 +23,13 @@ with open('./logs/@log@.txt', 'w') as f:
         #     break
         f.write(stream)
         f.write('END%s' % arg)
+        # fname = './logs/{}.txt'.format(arg).replace(' ','_')
+        # with open(fname, 'w') as f1:
+        #     f1.write(stream)
+        #     f1.close()
+        # fname = './logs/{}.txt'.format(arg).replace(' ','_')
+        #escape / in arg
+        arg = arg.replace('/', '_')
         with open('./logs/%s.txt' % arg, 'w') as f1:
             f1.write(stream)
             f1.close()

@@ -23,6 +23,8 @@ with open('./logs/@batch@.txt', 'w') as f:
             f.write('start %s' % line)  # write start line
             f.write(cmt)
             f.write('\n')
+            #replace _ in line to /
+            # line = line.replace('_', '/')
             steam = os.popen(line).read()
             #write steam to @batch@.txt
             f.write(steam)
