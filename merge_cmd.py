@@ -16,6 +16,7 @@ with open('./logs/@log@.txt', 'w') as f:
     args = sys.argv[1:]
     for arg in args:
         f.write('START%s' % arg)
+        f.write('\n')
         stream = os.popen(arg).read()
         # stop popen if not end in 4 seconds
         # if stream.find('4') == -1:
