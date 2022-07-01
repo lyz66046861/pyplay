@@ -5,9 +5,6 @@ import sys
 if not os.path.exists("logs"):
     os.makedirs("logs")
 
-# ping 8.8.8.8 -n 1 -w 1 > logs/ping.log 2>&1   #ping google
-# ping -c 1 -w 1
-
 # create log file
 with open('./logs/@log@.txt', 'w') as f:
     # accept arg from command line
@@ -18,17 +15,9 @@ with open('./logs/@log@.txt', 'w') as f:
         f.write('START%s' % arg)
         f.write('\n')
         stream = os.popen(arg).read()
-        # stop popen if not end in 4 seconds
-        # if stream.find('4') == -1:
-        #     f.write('STOP%s' % arg)
-        #     break
         f.write(stream)
         f.write('END%s' % arg)
-        # fname = './logs/{}.txt'.format(arg).replace(' ','_')
-        # with open(fname, 'w') as f1:
-        #     f1.write(stream)
-        #     f1.close()
-        # fname = './logs/{}.txt'.format(arg).replace(' ','_')
+        f.write('\n')
         #escape / in arg
         arg = arg.replace('/', '_')
         with open('./logs/%s.txt' % arg, 'w') as f1:
@@ -58,5 +47,15 @@ with open('./logs/@record@.txt', 'a') as f:
                 f.write(arg)
                 f.write('\n')
             f1.close()
+    f.close()
 
+#delete duplicate line in @record@.txt
+#删除@record@.txt文件中的重复行
+with open('./logs/@record@.txt', 'r') as f:
+    lines = f.readlines()  # readlines() returns a list of strings
+    lines = list(set(lines)) # remove duplicate lines
+    with open('./logs/@record@.txt', 'w') as f1:
+        for line in lines:
+            f1.write(line)
+        f1.close()
     f.close()
