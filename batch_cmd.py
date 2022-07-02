@@ -11,8 +11,11 @@ if not os.path.exists("./logs/@batch@.txt"):
     #打开@batch@.txt文件，将sys.argv[1:]写入文件
     #sys.argv[1:]是命令行参数
 with open('./logs/@batch@.txt', 'w') as f:
+    #accept user input as path
+    #接受用户输入的路径
+    path = input("Please input your path:")
     #accept arg from command line
-    path = sys.argv[1]
+    # path = sys.argv[1]
     # if arg is not exist in @record@.txt, then append it
     cmt= "##############################################################################"
     with open('./logs/%s'%path) as f1:
