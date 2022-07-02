@@ -1,3 +1,4 @@
+from nis import cat
 import os
 import sys
 
@@ -20,9 +21,12 @@ with open('./logs/@log@.txt', 'w') as f:
         f.write('\n')
         #escape / in arg
         arg = arg.replace('/', '_')
-        with open('./logs/%s.txt' % arg, 'w') as f1:
-            f1.write(stream)
-            f1.close()
+        try:
+            with open('./logs/%s.txt' % arg, 'w') as f1:
+                f1.write(stream)
+                f1.close()
+        except Exception as e:
+            print(e)
     f.close()
 
 #create @record@.txt file if not exists
