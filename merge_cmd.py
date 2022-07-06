@@ -1,4 +1,3 @@
-from nis import cat
 import os
 import sys
 
@@ -16,6 +15,7 @@ with open('./logs/@log@.txt', 'w') as f:
         f.write('START%s' % arg)
         f.write('\n')
         stream = os.popen(arg).read()
+        print(stream)
         f.write(stream)
         f.write('END%s' % arg)
         f.write('\n')
@@ -59,7 +59,8 @@ with open('./logs/@record@.txt', 'r') as f:
     lines = f.readlines()  # readlines() returns a list of strings
     lines = list(set(lines)) # remove duplicate lines
     with open('./logs/@record@.txt', 'w') as f1:
-        for line in lines:
-            f1.write(line)
+        # for line in lines:
+        #     f1.write(line)
+        f1.write(''.join(lines))
         f1.close()
     f.close()
